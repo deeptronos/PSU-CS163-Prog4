@@ -15,6 +15,9 @@ private:
 
 	int natural_beauty_index; // Number representing natural beauty of destination from 1..10
 
+public:
+	int display() const;
+
 };
 
 
