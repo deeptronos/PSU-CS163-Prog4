@@ -4,6 +4,7 @@
 
 #include <vector> // todo Can I do this?
 using namespace std;
+
 class destination {
 private:
 	char * location_name;

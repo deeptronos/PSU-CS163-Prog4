@@ -5,7 +5,12 @@
 #include "my_exceptions.h"
 
 template<class ItemType>
-class binary_tree_interface {
+class binary_tree_interface { // todo Data??
+private:
+	virtual void recursive_preorderTraversal(void visit(ItemType&)) const = 0;
+	virtual void recursive_inorderTraversal(void visit(ItemType&)) const = 0;
+	virtual void recursive_postorderTraversal(void visit(ItemType&)) const = 0;
+
 public:
 	virtual bool isEmpty() const            = 0;
 	virtual int getHeight() const           = 0;
@@ -23,7 +28,7 @@ public:
 	virtual bool contains(const ItemType& entry_);
 
 	// Traversals:
-	virtual void preorderTraverse(void visit(ItemType&)) const      = 0;
+	virtual void preorderTraversal(void visit(ItemType&)) const      = 0; // todo implement these recursively?? see ch15    // Wrapper for recursive implementation
 	virtual void inorderTraversal(void visit(ItemType&)) const      = 0;
 	virtual void postorderTraversal(void visit(ItemType&)) const    = 0;
 };

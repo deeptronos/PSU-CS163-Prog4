@@ -8,11 +8,11 @@
 #include "my_exceptions.h"
 
 template <class KeyType, class ItemType>
-class table {
+class table: public table_interface<KeyType, ItemType> {
 private:
 	binary_search_tree< entry<KeyType, ItemType> > item_tree;
 
-	void traversalHelper( entry<KeyType, ItemType>& the_entry);
+	void traverseHelper( entry<KeyType, ItemType>& the_entry );
 
 public:
 	table();
