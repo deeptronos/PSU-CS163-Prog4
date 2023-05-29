@@ -63,6 +63,66 @@ binary_node<ItemType> * binary_node_tree<ItemType>::recursive_balancedAdd(binary
 	}
 }
 
+template<class ItemType>
+binary_node<ItemType> * binary_node_tree<ItemType>::recursive_moveValuesUpTree(binary_node<ItemType> *sub_tree_ptr) { // TODO check for leakage/correct destruction...
+	if(sub_tree_ptr == nullptr){ // TODO check correctness... TODO is this necessary? Does the else case of the below primary if statement cover this? We'd get an error on the left_ptr, right_ptr declaration lines without this check, right?
+		return nullptr;
+	}
+	binary_node<ItemType> * left_ptr = sub_tree_ptr -> getLeftChildPtr();
+	binary_node<ItemType> * right_ptr = sub_tree_ptr -> getRightChildPtr();
+
+	if(left_ptr != nullptr && right_ptr != nullptr){
+		if(recursive_getHeight(left_ptr) > recursive_getHeight(right_ptr)){
+			sub_tree_ptr -> setItem( left_ptr -> getItem());
+			left_ptr = recursive_moveValuesUpTree(left_ptr);
+			sub_tree_ptr -> setLeftChildPtr(left_ptr);
+			return sub_tree_ptr;
+
+		}else{
+			sub_tree_ptr -> setItem( right_ptr -> getItem());
+			right_ptr = recursive_moveValuesUpTree(right_ptr);
+			sub_tree_ptr -> setRightChildPtr(right_ptr);
+			return sub_tree_ptr;
+
+		}
+	} // Called on leaf
+	return nullptr;
+
+}
+
+template <class ItemType>
+binary_node<ItemType> * binary_node_tree<ItemType>::recursive_removeValue(binary_node<ItemType> *sub_tree_ptr,const ItemType target, bool &success) { // TODO check for leakage/correct destruction
+	if(sub_tree_ptr == nullptr){
+		return nullptr;
+	}
+	if(sub_tree_ptr -> getItem() == target){
+		success = true;
+//		sub_tree_ptr = recursive_moveValuesUpTree(sub_tree_ptr);
+//		return sub_tree_ptr;
+		return(recursive_moveValuesUpTree(sub_tree_ptr)); // TODO equivalent ?
+	}
+	// Do DFS for target
+	binary_node<ItemType> * target_ptr = recursive_removeValue(sub_tree_ptr -> getLeftChildPtr(), target, success);
+	sub_tree_ptr -> setLeftChildPtr(target_ptr);
+	if(success == false){
+		target_ptr = recursive_removeValue(sub_tree_ptr -> getRightChildPtr(), target, success);
+		sub_tree_ptr -> setRightChildPtr(target_ptr);
+	}
+	return sub_tree_ptr;
+}
+template<class ItemType>
+binary_node<ItemType> * binary_node_tree<ItemType>::recursive_findNode(binary_node<ItemType> *tree_ptr, const ItemType &target, bool &success) const {
+	if(tree_ptr = nullptr) return nullptr;
+	if(tree_ptr -> getItem() == target){
+		success = true;
+		return tree_ptr;
+	}
+
+	binary_node<ItemType> target_ptr = recursive_findNode(tree_ptr -> getLeftChildPtr(), target, success);
+	if(success == false) target_ptr = recursive_findNode(tree_ptr -> getRightChildPtr(), target, success);
+
+	return target_ptr;
+}
 
 
 
@@ -168,7 +228,40 @@ bool binary_node_tree<ItemType>::add(const ItemType &new_data) {
 	return true;
 }
 
+template <class ItemType>
+bool binary_node_tree<ItemType>::isEmpty() const {
+	return(root_ptr == nullptr);
+}
 
+template <class ItemType>
+bool binary_node_tree<ItemType>::remove(const ItemType &data) {
+	bool successful = false;
+
+	root_ptr = recursive_removeValue(root_ptr, data, successful);
+	return successful;
+}
+
+template <class ItemType>
+void binary_node_tree<ItemType>::clear() { // TODO check correctness
+	recursive_destroyTree(root_ptr);
+}
+
+template <class ItemType>
+ItemType binary_node_tree<ItemType>::getEntry(const ItemType &an_entry) const throw(NotFoundException) {
+	bool successful = false;
+	binary_node<ItemType> * node = recursive_findNode(root_ptr, an_entry, successful);
+
+	if(successful == false) return node -> getItem();
+	else throw(NotFoundException());
+
+}
+
+template <class ItemType>
+bool binary_node_tree<ItemType>::contains(const ItemType &an_entry) const {
+	bool successful = false;
+	recursive_findNode(root_ptr, an_entry, successful);
+	return successful;
+}
 
 // ------------------------
 // Public Traversal Methods

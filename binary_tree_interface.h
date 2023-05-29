@@ -36,7 +36,7 @@ public:
 
 	virtual ItemType getEntry(const ItemType& entry_) const = 0; // throw(TargetNotFoundException) = 0 TOOD use this in body
 
-	virtual bool contains(const ItemType& entry_);
+	virtual bool contains(const ItemType& entry_) const = 0;
 
 	// Traversals:
 	virtual void preorderTraversal(void visit(ItemType&)) const      = 0; // todo implement these recursively?? see ch15    // Wrapper for recursive implementation
