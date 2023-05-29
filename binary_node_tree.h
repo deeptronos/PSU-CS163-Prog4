@@ -30,17 +30,17 @@ protected:
 	binary_node<ItemType> * recursive_removeValue(binary_node<ItemType> * sub_tree_ptr, const ItemType target, bool& success);
 
 	// Copies values up the tree to overwrite value in current node until a leaf is reached; the leaf is then removed, since its value is stored in the parent.
-	binary_node<ItemType> * recursive_moveValuesUpTree(binary_node<ItemType> * sub_tree_ptr);// TODO is naming correct? implemented recursively?
+	binary_node<ItemType> * recursive_moveValuesUpTree(binary_node<ItemType> * sub_tree_ptr);// TODO is naming correct? implemented recursively?    // TODO not implemented...? unneccessary? // TODO I don't understand the description of this method... I'd implement it otherwise
 
 	// Recursively searches for target value in the tree by using a preorder traversal.
-	binary_node<ItemType> * recursive_findNode(binary_node<ItemType> * tree_ptr, const ItemType& target, bool& success) const;
+	binary_node<ItemType> * recursive_findNode(binary_node<ItemType> * tree_ptr, const ItemType& target, bool& success) const; // TODO not implemented...? unneccessary?
 
 	// Copies the tree rooted at tree_ptr and returns a pointer to the copy.
 	binary_node<ItemType> * copy_tree(const binary_node<ItemType> * tree_ptr) const;
 
-// ---------------------------
-// Recursive Traversal Methods
-// ---------------------------
+// ----------------------------------
+// Recursive Traversal Helper Methods
+// ----------------------------------
 	void recursive_preorder(void visit(ItemType&), binary_node<ItemType> * tree_ptr) const;
 	void recursive_inorder(void visit(ItemType&), binary_node<ItemType> * tree_ptr) const;
 	void recursive_postorder(void visit(ItemType&), binary_node<ItemType> * tree_ptr) const;
