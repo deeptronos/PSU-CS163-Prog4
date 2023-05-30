@@ -4,10 +4,12 @@
 
 #include "binary_tree_interface.h"
 #include "binary_node.h"
+#include "binary_node_tree.h"
+
 #include "my_exceptions.h"
 
 template <class ItemType>
-class binary_search_tree {
+class binary_search_tree : binary_node_tree<ItemType>{
 private:
 	binary_node<ItemType> * root_ptr;
 
@@ -16,7 +18,7 @@ protected: // We may wanna just make these private so we don't get points off :P
 	// Recursive methods, to be accessed by public wrappers
 	//-----------------------------------------------------
 	// Recursively finds where the given node should be placed & inserts it in a leaf at that point.
-	binary_node<ItemType> * insertInorder(binary_node<ItemType> * sub_tree_ptr, binary_node<ItemType> * new_node);
+	binary_node<ItemType> * insertInorder(binary_node<ItemType> * sub_tree_ptr, binary_node<ItemType> * new_node_ptr);
 
 	// Removes the given target value from the tree while maintaining balance of binary search tree.
 	binary_node<ItemType> * removeValue(binary_node<ItemType> * sub_tree_ptr, const ItemType target, bool& success);
@@ -29,7 +31,7 @@ protected: // We may wanna just make these private so we don't get points off :P
 	binary_node<ItemType> * removeLeftmostNode(binary_node<ItemType> * sub_tree_ptr, ItemType& inorder_successor);
 
 	// Returns a pointer to the node containing the given value, or nullptr if not found.
-	binary_node<ItemType> * findNode(binary_node<ItemType> * tree_ptr, const ItemType&) const;
+	binary_node<ItemType> * findNode(binary_node<ItemType> * tree_ptr, const ItemType& target) const;
 
 
 public:
@@ -46,8 +48,8 @@ public:
 	//--------------
 	bool isEmpty() const;
 	int getHeight() const;
-	int getNumberOfNode() const;
-	ItemType getRootData() const throw(PreconditionViolatedException);
+	int getNumberOfNodes() const;
+	ItemType getRootData    () const throw(PreconditionViolatedException);
 	void setRootData(const ItemType& new_data) const throw(PreconditionViolatedException);
 	bool add(const ItemType& new_entry);
 	bool remove(const ItemType& an_entry);
@@ -58,9 +60,9 @@ public:
 	//------------------
 	// Public Traversals
 	//------------------
-	void preorderTraverse(void visit(ItemType&)) const;
-	void inorderTraverse(void visit(ItemType&)) const;
-	void postorderTraverse(void visit(ItemType&)) const;
+	void preorderTraversal(void visit(ItemType&)) const;
+	void inorderTraversal(void visit(ItemType&)) const;
+	void postorderTraversal(void visit(ItemType&)) const;
 
 	//-------------------
 	//Overloaded Operator

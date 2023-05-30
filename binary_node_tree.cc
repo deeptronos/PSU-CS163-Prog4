@@ -216,7 +216,7 @@ void binary_node_tree<ItemType>::setRootData(const ItemType &new_data) {
 	if(root_ptr == nullptr){
 		add(new_data);
 	}else{
-		root_ptr->setItem(new_data);
+		root_ptr -> setItem(new_data);
 	}
 }
 
@@ -279,4 +279,16 @@ void binary_node_tree<ItemType>::inorderTraversal(void (*visit)(ItemType &)) con
 template<class ItemType>
 void binary_node_tree<ItemType>::postorderTraversal(void (*visit)(ItemType &)) const {
 	recursive_postorder(visit, root_ptr);
+}
+
+
+
+// ------------------
+// Operator Overloads
+// ------------------
+template <class ItemType>
+binary_node_tree<ItemType>& binary_node_tree<ItemType>::operator=(const binary_node_tree<ItemType> &rhs) {
+	if(isEmpty() == false) clear();
+	this = copy_tree(&rhs);
+	return(* this);
 }
