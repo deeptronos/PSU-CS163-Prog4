@@ -71,6 +71,6 @@ public:
 
 
 };
-
+#include "binary_search_tree.cc"
 
 #endif //SOURCE_BINARY_SEARCH_TREE_H
