@@ -110,6 +110,7 @@ binary_node<ItemType> * binary_node_tree<ItemType>::recursive_removeValue(binary
 	}
 	return sub_tree_ptr;
 }
+
 template<class ItemType>
 binary_node<ItemType> * binary_node_tree<ItemType>::recursive_findNode(binary_node<ItemType> *tree_ptr, const ItemType &target, bool &success) const {
 	if(tree_ptr = nullptr) return nullptr;
