@@ -19,12 +19,12 @@ table<KeyType, ItemType>::~table(){
 
 template <class KeyType, class ItemType>
 bool table<KeyType, ItemType>::add(const KeyType &search_key, const ItemType &new_item) {
-	return item_tree.add(entry<KeyType, ItemType>(new_item, search_key));
+	return item_tree.add(tree_entry<KeyType, ItemType>(new_item, search_key));
 }
 
 template <class KeyType, class ItemType>
 bool table<KeyType, ItemType>::remove(const KeyType &search_key) {
-	return item_tree.remove(entry<KeyType, ItemType>(ItemType(), search_key));
+	return item_tree.remove(tree_entry<KeyType, ItemType>(ItemType(), search_key));
 }
 
 template <class KeyType, class ItemType>
@@ -55,6 +55,16 @@ ItemType table<KeyType, ItemType>::getItem(const KeyType &search_key) const thro
 template <class KeyType, class ItemType>
 bool table<KeyType, ItemType>::contains(const KeyType &search_key) const {
 	return item_tree.contains(search_key);
+}
+
+template<class KeyType, class ItemType>
+void table<KeyType, ItemType>::displayAll_byLocation() const { // TODO
+    0;
+}
+
+template<class KeyType, class ItemType>
+void table<KeyType, ItemType>::displayAll_byNaturalBeauty() const { // TODO
+	0;
 }
 
 template <class KeyType, class ItemType>

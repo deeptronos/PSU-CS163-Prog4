@@ -33,11 +33,11 @@ void tree_entry<KeyType, ItemType>::setItem(const ItemType &newEntry) {
 
 
 template <class KeyType, class ItemType>
-bool tree_entry<KeyType, ItemType>::operator==(const entry<KeyType, ItemType> &rhs) const {
+bool tree_entry<KeyType, ItemType>::operator==(const tree_entry<KeyType, ItemType> &rhs) const {
 	return(searchKey == rhs.getKey());
 }
 
 template <class KeyType, class ItemType>
-bool tree_entry<KeyType, ItemType>::operator>(const entry<KeyType, ItemType> &rhs) const { // todo check
+bool tree_entry<KeyType, ItemType>::operator>(const tree_entry<KeyType, ItemType> &rhs) const { // todo check
 	return(searchKey > rhs.getKey());
 }

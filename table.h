@@ -11,9 +11,9 @@
 template <class KeyType, class ItemType>
 class table: public table_interface<KeyType, ItemType> {
 private:
-	binary_search_tree< entry<KeyType, ItemType> > item_tree;
+	binary_search_tree< tree_entry<KeyType, ItemType> > item_tree;
 
-	void traversalHelper( entry<KeyType, ItemType>& the_entry );
+	void traversalHelper( tree_entry<KeyType, ItemType>& the_entry );
 
 public:
 	table();
@@ -42,6 +42,8 @@ public:
 	// a given client function once on each item.
 	void traverse(void visit(ItemType&)) const;
 };
+
+
 #include "table.cc"
 
 #endif //SOURCE_TABLE_H

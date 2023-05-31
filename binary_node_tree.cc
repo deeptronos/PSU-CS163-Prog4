@@ -113,7 +113,7 @@ binary_node<ItemType> * binary_node_tree<ItemType>::recursive_removeValue(binary
 
 template<class ItemType>
 binary_node<ItemType> * binary_node_tree<ItemType>::recursive_findNode(binary_node<ItemType> *tree_ptr, const ItemType &target, bool &success) const {
-	if(tree_ptr = nullptr) return nullptr;
+	if(tree_ptr == nullptr) return nullptr;
 	if(tree_ptr -> getItem() == target){
 		success = true;
 		return tree_ptr;
@@ -148,7 +148,7 @@ void binary_node_tree<ItemType>::recursive_inorder(void visit(ItemType&), binary
 		visit(the_item);
 		recursive_inorder(visit, tree_ptr -> getRightChildPtr());
 	}
-};
+}
 
 template<class ItemType>
 void binary_node_tree<ItemType>::recursive_postorder(void visit(ItemType&), binary_node<ItemType> * tree_ptr) const{
@@ -201,7 +201,7 @@ int binary_node_tree<ItemType>::getHeight() const {
 template <class ItemType>
 int binary_node_tree<ItemType>::getNumberOfNodes() const{
 	return recursive_getNumberOfNodes(root_ptr);
-};
+}
 
 template<class ItemType>
 ItemType binary_node_tree<ItemType>::getRootData() const throw(PreconditionViolatedException) {
@@ -253,7 +253,7 @@ ItemType binary_node_tree<ItemType>::getEntry(const ItemType &an_entry) const th
 	binary_node<ItemType> * node = recursive_findNode(root_ptr, an_entry, successful);
 
 	if(successful == false) return node -> getItem();
-	else throw(NotFoundException());
+	else throw(NotFoundException("getEntry()"));
 
 }
 

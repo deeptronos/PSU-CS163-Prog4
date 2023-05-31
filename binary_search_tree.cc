@@ -163,7 +163,7 @@ ItemType binary_search_tree<ItemType>::getEntry(const ItemType &an_entry) const 
 	binary_node<ItemType> * node = findNode(root_ptr, an_entry, successful);
 
 	if(successful == false) return node -> getItem();
-	else throw NotFoundException();
+	else throw NotFoundException("getEntry()");
 }
 
 template <class ItemType>
@@ -201,6 +201,7 @@ void binary_search_tree<ItemType>::postorderTraversal(void (*visit)(ItemType &))
 template <class ItemType>
 binary_search_tree<ItemType>& binary_search_tree<ItemType>::operator=(const binary_search_tree<ItemType>& rhs){
 	if(isEmpty() == false) clear();
-	this = this -> copy_tree();
+//	this = this -> copy_tree();
+	this = rhs -> copy_tree();
 	return(* this);
 }

@@ -3,40 +3,43 @@
 #define SOURCE_MY_EXCEPTIONS_H
 
 #include <iostream>
-#include <exception>
+#include <stdexcept>
 #include <string>
 
 // TODO Apparently the commented-out definitions are invalid because of the concatenation in the constructor's return exception. If it worked this would be more useful than the current implementation of my exceptions, since we can pass information to the exception when it's called.
 
 using namespace std;
-class TargetNotFoundException: public exception{
+//class TargetNotFoundException: public exception{
+//public:
+////	TargetNotFoundException(const string& message = "") : exception("Target not found: " + message){
+////		// todo implementation??
+////	} // TODO are we allowed to use strings yet :(
+////	virtual const char* what() const throw(){
+//	virtual const char* what() const throw(){
+//		return "Target not found";
+//	}
+//	virtual ~TargetNotFoundException();
+//};
+
+class TargetNotFoundException : public logic_error{
 public:
-//	TargetNotFoundException(const string& message = "") : exception("Target not found: " + message){
-//		// todo implementation??
-//	} // TODO are we allowed to use strings yet :(
-	virtual const char* what() const throw(){
-		return "Target not found";
-	}
+//	TargetNotFoundException(const string& message = "") : exception("Target not found: " + (message.c_str())){}
+	TargetNotFoundException(const string& message = "") : logic_error("Target not found: " + (message)){}
 };
 
-class PreconditionViolatedException: public exception{
+class PreconditionViolatedException: public logic_error{
 public:
-//	PreconditionViolatedException(const string& message = "") : exception("Violation of precondition: " + message.c_str()){
-//		// todo implementation??
-//	} // TODO are we allowed to use strings yet :(
-	virtual const char* what() const throw(){
-		return "Violation of precondition for usage";
-	}
+	PreconditionViolatedException(const string& message = "") : logic_error("Violation of precondition: " + message){
+	} // TODO are we allowed to use strings yet :(
+
 };
 
-class NotFoundException: public exception{
+class NotFoundException: public logic_error{
 public:
-//	NotFound(const string& message = "") : exception("Not found: " + message.c_str()){
-//		// todo implementation??
-//	} // TODO are we allowed to use strings yet :(
-	virtual const char* what() const throw(){
-		return "Not found";
-	}
+	NotFoundException(const string& message = "") : logic_error("Not found: " + message){
+	} // TODO are we allowed to use strings yet :(
+
 };
 
 #endif //SOURCE_MY_EXCEPTIONS_H
+
