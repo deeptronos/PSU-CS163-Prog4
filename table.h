@@ -13,7 +13,8 @@ class table: public table_interface<KeyType, ItemType> {
 private:
 	binary_search_tree< tree_entry<KeyType, ItemType> > item_tree;
 
-	void traversalHelper( tree_entry<KeyType, ItemType>& the_entry );
+	void traverseHelper( tree_entry<KeyType, ItemType>& the_entry );
+//	mutable void (*traverse_visit)(ItemType&); // Function pointer to store traverse()'s ``visit()`` argument for use in traverse_helper.
 
 public:
 	table();
@@ -40,6 +41,7 @@ public:
 
 	//Traverses the items in this table in sorted search-key order and calls
 	// a given client function once on each item.
+//	void traverse(void visit(ItemType&)) const;
 	void traverse(void visit(ItemType&)) const;
 };
 

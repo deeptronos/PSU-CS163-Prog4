@@ -46,4 +46,4 @@ Do we really need to implement the constructor/destructor recursively?? a bit co
   * Should we implement a hashing step to create the search key each time we Add() to table?? where are we getting the SearchKey right now....
 * table::displayAll_byLocation(); table::displayAll_byNaturalBeauty
 * Create a generic testing interface, and an implementation for this project.
-* 
+* Re-organize classes to fit style guide (public field first, then private)

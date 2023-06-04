@@ -8,29 +8,35 @@ destination::destination(){ // default
 }
 
 //destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, // TODO this seems like a silly thing to do...
-////                         const vector<char *> *things, const int *natural_beauty)  {
-//                         vector<char *> *things, int natural_beauty)  { // TODO how to assign things to things_to_do while remaining a const argument?
-//	location_name = new char[strlen(name) + 1];
-//	strcpy(location_name, name);
-//
-//	nationstate_identifier = new char[strlen(nationstate) + 1];
-//	strcpy(nationstate_identifier, nationstate);
-//
-//	best_time_of_year = new char[strlen(best_time) + 1];
-//	strcpy(best_time_of_year, best_time);
-//
-//	how_to_get_there = new char[strlen(getting_there) + 1];
-//	strcpy(how_to_get_there, getting_there);
-//
-////	things_to_do(&things);
-////	things_to_do things;
-//	things_to_do = things;
-//
-//	natural_beauty_index = (int) natural_beauty; // TODO problem?
-//}
+////                         const vector<char *> *things, const int *natural_beauty)
+destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, const char **things, int things_size, int natural_beauty) {
+	location_name = new char[strlen(name) + 1];
+	strcpy(location_name, name);
+
+	nationstate_identifier = new char[strlen(nationstate) + 1];
+	strcpy(nationstate_identifier, nationstate);
+
+	best_time_of_year = new char[strlen(best_time) + 1];
+	strcpy(best_time_of_year, best_time);
+
+	how_to_get_there = new char[strlen(getting_there) + 1];
+	strcpy(how_to_get_there, getting_there);
+
+//	things_to_do(&things);
+//	things_to_do things;
+	things_to_do_size = things_size;
+	things_to_do = new char *[things_size];
+	for(int i = 0; i < things_to_do_size; ++i){
+		things_to_do[i] = new char[255]; // Creating large buffer for each things_to_do entry bc we don't know size of each dynamic array entry...
+		strcpy(things_to_do[i], things[i]);
+		// TODO Can we trim off excess dynam char array characters?
+	}
+
+	natural_beauty_index = natural_beauty; // TODO problem?
+}
 //destination(const char* name, const char* nationstate, const char* best_time, const char* getting_there,  const char** things, int things_size, int natural_beauty)
-destination::destination(char* name,  char* nationstate,  char* best_time,  char* getting_there,   char** things, int things_size, int natural_beauty)
-: location_name(name), nationstate_identifier(nationstate), best_time_of_year(best_time), how_to_get_there(getting_there), things_to_do(things), things_to_do_size(things_size), natural_beauty_index(natural_beauty) {}
+//destination::destination(const char* name, const  char* nationstate,  const char* best_time,  const char* getting_there,  const char** things, int things_size, int natural_beauty)
+//: location_name(name), nationstate_identifier(nationstate), best_time_of_year(best_time), how_to_get_there(getting_there), things_to_do(things), things_to_do_size(things_size), natural_beauty_index(natural_beauty) {}
 
 destination::~destination() {
 	// delete dynamic things:
