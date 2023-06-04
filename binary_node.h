@@ -26,5 +26,6 @@ public:
 	void setRightChildPtr(binary_node<ItemType> * right_ptr);
 };
 
+#include "binary_node.cc"
 
 #endif //SOURCE_BINARY_NODE_H

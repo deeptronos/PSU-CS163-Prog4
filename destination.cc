@@ -3,28 +3,46 @@
 #include <iostream>
 
 
-destination::destination() : location_name(nullptr), nationstate_identifier(nullptr), best_time_of_year(nullptr), how_to_get_there(nullptr), things_to_do(nullptr), natural_beauty_index(-1)  {} // default constructor using initializers. Sets natural_beauty_index to a value representing a null destination.
+//destination::destination() : location_name(nullptr), nationstate_identifier(nullptr), best_time_of_year(nullptr), how_to_get_there(nullptr), things_to_do(nullptr), natural_beauty_index(-1)  {} // default constructor using initializers. Sets natural_beauty_index to a value representing a null destination.
+destination::destination(){ // default
+}
 
-destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, // TODO this seems like a silly thing to do...
-//                         const vector<char *> *things, const int *natural_beauty)  {
-                         vector<char *> *things, const int *natural_beauty)  { // TODO how to assign things to things_to_do while remaining a const argument?
-	location_name = new char[strlen(name) + 1];
-	strcpy(location_name, name);
+//destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, // TODO this seems like a silly thing to do...
+////                         const vector<char *> *things, const int *natural_beauty)  {
+//                         vector<char *> *things, int natural_beauty)  { // TODO how to assign things to things_to_do while remaining a const argument?
+//	location_name = new char[strlen(name) + 1];
+//	strcpy(location_name, name);
+//
+//	nationstate_identifier = new char[strlen(nationstate) + 1];
+//	strcpy(nationstate_identifier, nationstate);
+//
+//	best_time_of_year = new char[strlen(best_time) + 1];
+//	strcpy(best_time_of_year, best_time);
+//
+//	how_to_get_there = new char[strlen(getting_there) + 1];
+//	strcpy(how_to_get_there, getting_there);
+//
+////	things_to_do(&things);
+////	things_to_do things;
+//	things_to_do = things;
+//
+//	natural_beauty_index = (int) natural_beauty; // TODO problem?
+//}
+//destination(const char* name, const char* nationstate, const char* best_time, const char* getting_there,  const char** things, int things_size, int natural_beauty)
+destination::destination(char* name,  char* nationstate,  char* best_time,  char* getting_there,   char** things, int things_size, int natural_beauty)
+: location_name(name), nationstate_identifier(nationstate), best_time_of_year(best_time), how_to_get_there(getting_there), things_to_do(things), things_to_do_size(things_size), natural_beauty_index(natural_beauty) {}
 
-	nationstate_identifier = new char[strlen(nationstate) + 1];
-	strcpy(nationstate_identifier, nationstate);
+destination::~destination() {
+	// delete dynamic things:
+//	delete location_name;
+//	delete nationstate_identifier;
+//	delete best_time_of_year;
+//	delete how_to_get_there;
 
-	best_time_of_year = new char[strlen(best_time) + 1];
-	strcpy(best_time_of_year, best_time);
-
-	how_to_get_there = new char[strlen(getting_there) + 1];
-	strcpy(how_to_get_there, getting_there);
-
-//	things_to_do(&things);
-//	things_to_do things;
-	things_to_do = things;
-
-	natural_beauty_index = *natural_beauty; // TODO problem?
+//	for(int i = 0; i < things_to_do_size; ++i){
+//		delete[] things_to_do[i];
+//	}
+//	delete things_to_do;
 }
 
 
@@ -36,9 +54,10 @@ int destination::display() const{
 	<< how_to_get_there << endl << "    Beauty index: " << natural_beauty_index << "/10" << endl
 	<< "    You can do the following activities: " << endl;
 
-	for(int i = 0; i < things_to_do->size(); ++i){
+	for(auto i = 0; i < things_to_do_size; ++i){
 		cout << "        - " << &(things_to_do[i]) << endl;
 	}
+	return 1;
 };
 
 char * destination::getLocationName() const {
@@ -57,8 +76,8 @@ char * destination::getHowToGetThere() const {
 	return how_to_get_there;
 }
 
-vector<char *> destination::getThingsToDo() const { // todo good?
-	return *things_to_do;
+char** destination::getThingsToDo() const { // todo good?
+	return things_to_do;
 }
 
 int destination::getNaturalBeautyIndex() const {
@@ -82,11 +101,30 @@ void destination::setHowToGetThere(const char *new_) {
 	strcpy(how_to_get_there, new_);
 }
 
-void destination::setThingsToDo(vector<char *> *new_) { // todo only non-const setter
-//void destination::setThingsToDo(const vector<char *> *new_) {
+void destination::setThingsToDo(char** new_, const int size_) {
 	things_to_do = new_;
-}
+	things_to_do_size = size_;
+} // todo only non-const setter...
+//void destination::setThingsToDo(const vector<char *> *new_) {
+//	things_to_do = new_;
+//}
 
 void destination::setNaturalBeautyIndex(const int new_) {
 	natural_beauty_index = new_;
 }
+
+
+
+ostream& operator<<(ostream& os, const destination& ds){ // TODO this is the same as display() but it takes the ostream as an argument :P
+	os << "DESTINATION - " << ds.location_name <<", " << ds.nationstate_identifier << endl
+	     << "    You should really visit in the " << ds.best_time_of_year << endl << "    It's best to get there by "
+	     << ds.how_to_get_there << endl << "    Beauty index: " << ds.natural_beauty_index << "/10" << endl
+	     << "    You can do the following activities: " << endl;
+
+	for(auto i = 0; i < ds.things_to_do_size  ; ++i){
+		os << "        - " << (ds.things_to_do[i]) << endl;
+	}
+	return os;
+}
+
+

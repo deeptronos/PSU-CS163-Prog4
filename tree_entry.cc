@@ -12,6 +12,12 @@ void tree_entry<KeyType, ItemType>::setKey(const KeyType &sk) {
 template<class KeyType, class ItemType>
 tree_entry<KeyType, ItemType>::tree_entry() {} // default
 
+//template<class KeyType, class ItemType>
+//tree_entry<KeyType, ItemType>::tree_entry(KeyType search_key, ItemType new_item) : item(new_item), searchKey(search_key){} // using initializer
+template<class KeyType, class ItemType>
+tree_entry<KeyType, ItemType>::tree_entry(ItemType new_entry, KeyType search_key) : searchKey(search_key), item(new_entry) {}
+
+
 template<class KeyType, class ItemType>
 tree_entry<KeyType, ItemType>::~tree_entry() {} //default
 
@@ -28,6 +34,12 @@ KeyType tree_entry<KeyType, ItemType>::getKey() const {
 template<class KeyType, class ItemType>
 void tree_entry<KeyType, ItemType>::setItem(const ItemType &newEntry) {
 	item = newEntry;
+}
+
+
+template<class KeyType, class ItemType>
+void tree_entry<KeyType, ItemType>::display() const {
+	item.display(); // TODO only works for destination...
 }
 
 

@@ -2,7 +2,9 @@
 #include "table.h"
 
 template <class KeyType, class ItemType>
-table<KeyType, ItemType>::table() : item_tree(nullptr) {} // default constructor using initializer
+//table<KeyType, ItemType>::table() : item_tree(nullptr) {} // default constructor using initializer
+table<KeyType, ItemType>::table() {
+} // default constructor using initializer
 
 template <class KeyType, class ItemType>
 table<KeyType, ItemType>::table(const table<KeyType, ItemType> &table_) : item_tree(table_.item_tree.copy_tree()) {} // TODO check
@@ -49,7 +51,8 @@ void table<KeyType, ItemType>::clear() {
 
 template <class KeyType, class ItemType>
 ItemType table<KeyType, ItemType>::getItem(const KeyType &search_key) const throw(NotFoundException) {
-	return item_tree.getEntry(search_key); // TODO can this throw NotFoundException?
+//	return item_tree.getEntry(search_key); // TODO can this throw NotFoundException?
+	return item_tree.getEntry(tree_entry<KeyType, ItemType>(ItemType(),search_key)); // Todo won't this just search item_tree for an entry whose item matches ItemType() ?
 }
 
 template <class KeyType, class ItemType>

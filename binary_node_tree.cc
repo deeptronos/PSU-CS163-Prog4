@@ -49,8 +49,10 @@ binary_node<ItemType> * binary_node_tree<ItemType>::recursive_balancedAdd(binary
 	if(sub_tree_ptr == nullptr){
 		return new_node_ptr;
 	}else{
-		binary_node<ItemType> left_ptr = sub_tree_ptr->getLeftChildPtr();
-		binary_node<ItemType> right_ptr = sub_tree_ptr->getRightChildPtr();
+//		binary_node<ItemType> left_ptr = sub_tree_ptr->getLeftChildPtr();
+		auto left_ptr = sub_tree_ptr->getLeftChildPtr();
+//		binary_node<ItemType> right_ptr = sub_tree_ptr->getRightChildPtr();
+		auto right_ptr = sub_tree_ptr->getRightChildPtr();
 
 		if(recursive_getHeight(left_ptr) > recursive_getHeight(right_ptr)){
 			right_ptr = recursive_balancedAdd(right_ptr, new_node_ptr);
@@ -119,7 +121,7 @@ binary_node<ItemType> * binary_node_tree<ItemType>::recursive_findNode(binary_no
 		return tree_ptr;
 	}
 
-	binary_node<ItemType> target_ptr = recursive_findNode(tree_ptr -> getLeftChildPtr(), target, success);
+	auto target_ptr = recursive_findNode(tree_ptr -> getLeftChildPtr(), target, success);
 	if(success == false) target_ptr = recursive_findNode(tree_ptr -> getRightChildPtr(), target, success);
 
 	return target_ptr;

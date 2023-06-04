@@ -13,14 +13,15 @@ private:
 	char * best_time_of_year;
 	char * how_to_get_there;
 
-	vector<char *>* things_to_do; // TODO allowed? should this not be a * to a vector<char *>?
+	char ** things_to_do;
+	int things_to_do_size;
 
 	int natural_beauty_index; // Number representing natural beauty of destination from 1..10
 
 public:
 	destination();
 //	destination(const char* name, const char* nationstate, const char* best_time, const char* getting_there, const vector<char *>* things, const int* natural_beauty);
-	destination(const char* name, const char* nationstate, const char* best_time, const char* getting_there,  vector<char *>* things, const int* natural_beauty);
+	destination(char* name,  char* nationstate,  char* best_time,  char* getting_there,   char** things, int things_size, int natural_beauty);
 	~destination();
 
 
@@ -30,16 +31,17 @@ public:
 	char * getNationstateIdentifier() const;
 	char * getBestTimeOfYear() const;
 	char * getHowToGetThere() const;
-	vector<char *> getThingsToDo() const;
+	char** getThingsToDo() const;
 	int getNaturalBeautyIndex() const;
-
+	//TODO you should probably get rid of these, at least as public fields...
 	void setNationstateIdentifier(const char* new_);
 	void setBestTimeOfYear(const char* new_);
 	void setHowToGetThere(const char* new_);
-	void setThingsToDo(vector<char*>* new_); // TODO argument type OK? implicit deep copy...
+	void setThingsToDo(char** new_, const int size_); // TODO argument type OK? implicit deep copy...
 	void setNaturalBeautyIndex(const int new_);
 
+	friend std::ostream& operator<<(std::ostream& os, const destination& ds); //TODO why a friend...
 };
 
-
+#include "destination.cc" // todo Why this...
 #endif //SOURCE_DESTINATION_H

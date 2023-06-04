@@ -8,10 +8,6 @@
 
 template<class ItemType>
 class binary_tree_interface {
-private: // TODO remove private ?
-	virtual void recursive_preorderTraversal(void visit(ItemType&)) const = 0;
-	virtual void recursive_inorderTraversal(void visit(ItemType&)) const = 0;
-	virtual void recursive_postorderTraversal(void visit(ItemType&)) const = 0;
 
 public:
 	/** Tests whether this binary tree is empty.

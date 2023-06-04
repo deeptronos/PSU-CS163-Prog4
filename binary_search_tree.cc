@@ -12,7 +12,7 @@ binary_node<ItemType> * binary_search_tree<ItemType>::insertInorder(binary_node<
 		sub_tree_ptr -> setLeftChildPtr(temp_ptr);
 	}else{
 		auto temp_ptr = insertInorder(sub_tree_ptr -> getRightChildPtr(), new_node_ptr);
-		sub_tree_ptr ->setRightChildPtr();
+		sub_tree_ptr ->setRightChildPtr(temp_ptr);
 	}
 	return sub_tree_ptr;
 }
@@ -47,22 +47,21 @@ binary_node<ItemType> * binary_search_tree<ItemType>::removeNode(binary_node<Ite
 		node_ptr = nullptr;
 		return node_ptr;
 	}
-	int childcount = 0;
-	if(node_ptr -> getRightChildPtr() != nullptr) ++childcount;
-	if(node_ptr -> getLeftChildPtr() != nullptr) ++ childcount;
-
-	if(childcount == 1){ // 1 child
-		binary_node<ItemType> * node_to_connect_ptr;
-		if(node_ptr -> getLeftChildPtr() != nullptr) node_to_connect_ptr = node_ptr -> getLeftChildPtr();
-		else node_to_connect_ptr = node_ptr -> getRightChildPtr();
-
+	else if((node_ptr -> getLeftChildPtr() == nullptr) != (node_ptr -> getRightChildPtr() == nullptr)){ // node_ptr has only one child
+		binary_node<ItemType> * node_to_connect_ptr = nullptr;
+		if(node_ptr -> getLeftChildPtr() != nullptr){
+			node_to_connect_ptr = node_ptr -> getLeftChildPtr();
+		}else{
+			node_to_connect_ptr = node_ptr -> getRightChildPtr();
+		}
 		delete node_ptr;
 		node_ptr = nullptr;
 		return node_to_connect_ptr;
-
-	}else{ // 2 children
-		ItemType * new_node_value;
-		binary_node<ItemType> * temp = removeLeftmostNode(node_ptr -> getRightChildPtr(), new_node_value);
+	}
+	else{
+		ItemType new_node_value;
+		auto temp_ptr = removeLeftmostNode(node_ptr->getRightChildPtr(), new_node_value);
+		node_ptr -> setRightChildPtr(temp_ptr);
 		node_ptr -> setItem(new_node_value);
 		return node_ptr;
 	}
@@ -73,13 +72,13 @@ binary_node<ItemType> * binary_search_tree<ItemType>::findNode(binary_node<ItemT
 	if(tree_ptr == nullptr) return nullptr;
 	else if(tree_ptr -> getItem() == target) return tree_ptr;
 	else if(tree_ptr -> getItem() > target) return findNode(tree_ptr -> getLeftChildPtr(), target);
-	else return findNode(tree_ptr -> getRightChildPtr());
+	else return findNode(tree_ptr -> getRightChildPtr(), target);
 }
 
 template <class ItemType>
 binary_node<ItemType> * binary_search_tree<ItemType>::removeLeftmostNode(binary_node<ItemType> *sub_tree_ptr, ItemType &inorder_successor) {
 	if(sub_tree_ptr -> getLeftChildPtr() == nullptr){
-		inorder_successor == sub_tree_ptr -> getItem();
+		inorder_successor = sub_tree_ptr -> getItem();
 		return removeNode(sub_tree_ptr);
 	}else return removeLeftmostNode(sub_tree_ptr -> getLeftChildPtr(), inorder_successor);
 }
@@ -115,6 +114,8 @@ template <class ItemType>
 bool binary_search_tree<ItemType>::add(const ItemType &new_entry) {
 	binary_node<ItemType> * new_node_ptr = new binary_node<ItemType>(new_entry);
 	root_ptr = insertInorder(root_ptr, new_node_ptr);
+
+	return true;
 }
 
 template <class ItemType>
@@ -159,11 +160,10 @@ void binary_search_tree<ItemType>::clear() { // TODO check correctness
 
 template <class ItemType>
 ItemType binary_search_tree<ItemType>::getEntry(const ItemType &an_entry) const throw(NotFoundException) {
-	bool successful = false;
-	binary_node<ItemType> * node = findNode(root_ptr, an_entry, successful);
+	binary_node<ItemType> * node_ptr = findNode(root_ptr, an_entry);
 
-	if(successful == false) return node -> getItem();
-	else throw NotFoundException("getEntry()");
+	if(node_ptr == nullptr) throw NotFoundException("binary_search_tree::getEntry()"); //case: findNode unsuccessful
+	else return node_ptr -> getItem();
 }
 
 template <class ItemType>
@@ -198,10 +198,10 @@ void binary_search_tree<ItemType>::postorderTraversal(void (*visit)(ItemType &))
 //-------------------
 //Overloaded Operator
 //-------------------
-template <class ItemType>
-binary_search_tree<ItemType>& binary_search_tree<ItemType>::operator=(const binary_search_tree<ItemType>& rhs){
-	if(isEmpty() == false) clear();
-//	this = this -> copy_tree();
-	this = rhs -> copy_tree();
-	return(* this);
-}
+//template <class ItemType>
+//binary_search_tree<ItemType>& binary_search_tree<ItemType>::operator=(const binary_search_tree<ItemType>& rhs){
+//	if(isEmpty() == false) clear();
+////	this = this -> copy_tree();
+//	this = rhs -> copy_tree();
+//	return(* this);
+//}

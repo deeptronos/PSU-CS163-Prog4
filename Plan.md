@@ -38,3 +38,12 @@ Do we really need to implement the constructor/destructor recursively?? a bit co
       * BinaryNode interface/implementation?
       * BinaryTreeInterface?? (Carrano 15.2.3)
   * Custom exceptions (exception.h)
+
+*** 
+
+# To Do:
+* (Using strcmp instead) Implement the pseudo-hashing technique for sorting I designed in discussions post from week 8...
+  * Should we implement a hashing step to create the search key each time we Add() to table?? where are we getting the SearchKey right now....
+* table::displayAll_byLocation(); table::displayAll_byNaturalBeauty
+* Create a generic testing interface, and an implementation for this project.
+* 
