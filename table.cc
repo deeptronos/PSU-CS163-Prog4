@@ -121,12 +121,17 @@ void table<KeyType, ItemType>::displayAll_byNaturalBeauty() const { // TODO
 //	};
 //	item_tree.inorderTraversal(visit_wrapper);
 //}
-template <class KeyType, class ItemType>
-void table<KeyType, ItemType>::traverse(void visit(ItemType&)) const {
-	auto visit_wrapper = [&](tree_entry<KeyType, ItemType>& the_entry) {
-		ItemType& item = the_entry.getItem();
-		visit(item);
-	};
+//template <class KeyType, class ItemType>
+//void table<KeyType, ItemType>::traverse(void visit(ItemType&)) {
+//	auto visit_wrapper = [&](tree_entry<KeyType, ItemType>& the_entry) {
+//		ItemType& item = the_entry.getItem();
+//		visit(item);
+//	};
+//
+////	item_tree.inorderTraversal(visit_wrapper);
+//}
 
-//	item_tree.inorderTraversal(visit_wrapper);
+template <class KeyType, class ItemType>
+void table<KeyType, ItemType>::traverse(void visit(tree_entry<KeyType, ItemType>&)) const { //First draft
+	item_tree.inorderTraversal(visit);
 }

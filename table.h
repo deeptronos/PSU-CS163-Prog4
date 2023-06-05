@@ -42,7 +42,7 @@ public:
 	//Traverses the items in this table in sorted search-key order and calls
 	// a given client function once on each item.
 //	void traverse(void visit(ItemType&)) const;
-	void traverse(void visit(ItemType&)) const;
+	void traverse(void visit(tree_entry<KeyType, ItemType>&)) const ;
 };
 
 

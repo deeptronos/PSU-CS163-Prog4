@@ -3,6 +3,7 @@
 #ifndef SOURCE_TABLE_INTERFACE_H
 #define SOURCE_TABLE_INTERFACE_H
 
+#include "tree_entry.h" // TODO may be a bad idea...
 #include "my_exceptions.h"
 
 template<class KeyType, class ItemType> // Allows data type of table's data entries to differ from the data type of their search keys
@@ -49,7 +50,8 @@ public:
 	/**Traverses this table and calls a given client function once for each item.
 	* @post The given function’s action occurs once for each item in the table and possibly alters the item.
 	* @param visit A client function. */
-	virtual void traverse(void visit(ItemType&)) const = 0;
+//	virtual void traverse(void visit(ItemType&)) const = 0;
+	virtual void traverse(void visit(tree_entry<KeyType, ItemType>&)) const = 0; // todo this seems a little silly
 };
 
 

@@ -50,7 +50,7 @@ int test_bst(){
 
 int main(){ // testing table with manual key-setting
 	test_bst();
-//	table<key_t, item_t> tbl;
+	table<key_t, item_t> tbl;
 //	throw TargetNotFoundException(); // Todo Doesn't compile.....
 
 }
