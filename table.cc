@@ -93,44 +93,6 @@ void table<KeyType, ItemType>::displayAll_byNaturalBeauty() const { // TODO
 	return;
 }
 
-//template <class KeyType, class ItemType>
-//void table<KeyType, ItemType>::traverse(void visit(ItemType&)) const { // TODO check
-//////	auto visit_wrapper = [&](tree_entry<KeyType, ItemType>& the_entry){
-////	auto visit_wrapper = [&](tree_entry<KeyType, ItemType>& the_entry) {
-////		visit(the_entry.getItem());
-////	};
-////	item_tree.inorderTraversal(traversalHelper());
-//	traverse_visit = visit;
-//	item_tree.inorderTraversal(traverseHelper);
-//}
-
-//template <class KeyType, class ItemType>
-//void table<KeyType, ItemType>::traverse(void visit(ItemType&)) const {
-////	traverse_visit = visit;
-////	auto visit_wrapper = [this](tree_entry<KeyType, ItemType>& the_entry) {
-////		this->traverseHelper(the_entry);
-////	};
-//	item_tree.inorderTraversal(visit);
-//}
-
-//template <class KeyType, class ItemType>
-//void table<KeyType, ItemType>::traverse(void visit(ItemType&)) const {
-////	auto visit_wrapper = [&visit](tree_entry<KeyType, ItemType>& the_entry) {
-//	auto visit_wrapper = [&visit](tree_entry<KeyType, ItemType>& the_entry)->void {
-//		visit(the_entry.getItem());
-//	};
-//	item_tree.inorderTraversal(visit_wrapper);
-//}
-//template <class KeyType, class ItemType>
-//void table<KeyType, ItemType>::traverse(void visit(ItemType&)) {
-//	auto visit_wrapper = [&](tree_entry<KeyType, ItemType>& the_entry) {
-//		ItemType& item = the_entry.getItem();
-//		visit(item);
-//	};
-//
-////	item_tree.inorderTraversal(visit_wrapper);
-//}
-
 template <class KeyType, class ItemType>
 void table<KeyType, ItemType>::traverse(void visit(tree_entry<KeyType, ItemType>&)) const { //First draft
 	item_tree.inorderTraversal(visit);
