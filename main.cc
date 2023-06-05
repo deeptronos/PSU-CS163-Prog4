@@ -29,9 +29,8 @@ int test_bst(){
 //	strcpy(ttd_1[1], "Whale-watching");
 //	ttd_1[2] = new char[23];
 //	strcpy(ttd_1[2], "Sunday morning market");
-//
 	int ttd_1_size = 3;
-	const char * ttd_1[] = {"Surfing", "Whale-watching", "Sunday morning marget"};
+	const char * ttd_1[] = {"Surfing", "Whale-watching", "Sunday morning market"};
 
 	d_bst.add(tree_entry<key_t, item_t>(destination("Santa Clarita", "CA", "Spring", "Train", ttd_1, ttd_1_size, 8), 1));
 
@@ -46,11 +45,18 @@ int test_bst(){
 	d_bst.add(tree_entry<key_t, item_t>(destination("Fresno", "CA", "Summer", "Plane", ttd_2, ttd_2_size, 5),2));
 
 	d_bst.inorderTraversal(my_visit);
+
+	return 0;
 }
 
 int main(){ // testing table with manual key-setting
-	test_bst();
+//	test_bst();
 	table<key_t, item_t> tbl;
+
+	int ttd_1_size = 3;
+	const char * ttd_1[] = {"Surfing", "Whale-watching", "Sunday morning market"};
+	tbl.add(1,destination("Santa Clarita", "CA", "Spring", "Train", ttd_1, ttd_1_size, 8) );
 //	throw TargetNotFoundException(); // Todo Doesn't compile.....
 
+	return 0;
 }

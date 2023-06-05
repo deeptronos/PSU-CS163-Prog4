@@ -13,7 +13,7 @@ class table: public table_interface<KeyType, ItemType> {
 private:
 	binary_search_tree< tree_entry<KeyType, ItemType> > item_tree;
 
-	void traverseHelper( tree_entry<KeyType, ItemType>& the_entry );
+	void traverseHelper( tree_entry<KeyType, ItemType>& the_entry ); // TODO unnecessary?
 //	mutable void (*traverse_visit)(ItemType&); // Function pointer to store traverse()'s ``visit()`` argument for use in traverse_helper.
 
 public:

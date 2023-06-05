@@ -13,7 +13,7 @@
 template <class ItemType>
 class binary_search_tree : binary_node_tree<ItemType>{
 private:
-	binary_node<ItemType> * root_ptr;
+//	binary_node<ItemType> * root_ptr;
 
 protected: // We may wanna just make these private so we don't get points off :P
 	//-----------------------------------------------------
