@@ -17,10 +17,13 @@ int binary_node_tree<ItemType>::recursive_getHeight(binary_node<ItemType> * sub_
 template<class ItemType>
 void binary_node_tree<ItemType>::recursive_destroyTree(binary_node<ItemType> *sub_tree_ptr) {
 	if(sub_tree_ptr != nullptr){
+
 		recursive_destroyTree(sub_tree_ptr->getLeftChildPtr());
 		recursive_destroyTree(sub_tree_ptr->getRightChildPtr());
 		delete sub_tree_ptr;
+
 	}
+
 }
 
 template<class ItemType>

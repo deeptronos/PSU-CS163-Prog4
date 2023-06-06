@@ -27,8 +27,7 @@ table<KeyType, ItemType>::table(const table<KeyType, ItemType> &table_) : item_t
 //}
 
 template <class KeyType, class ItemType>
-table<KeyType, ItemType>::~table(){
-	clear(); // TODO valid?
+table<KeyType, ItemType>::~table(){ // TODO ok?
 }
 
 
@@ -81,6 +80,11 @@ bool table<KeyType, ItemType>::contains(const KeyType &search_key) const {
 	tree_entry<KeyType, ItemType> entry_to_find(ItemType(), search_key);
 //	tree_entry<KeyType,ItemType> found_entry = item_tree.getEntry(entry_to_find);
 	return item_tree.contains(entry_to_find);
+}
+
+template<class KeyType, class ItemType>
+void table<KeyType, ItemType>::display() {
+	cout << "TABLE: " << endl << "  tree info: " << endl << "    # Data: " <<  item_tree.getNumberOfNodes() << ", Height: " << item_tree.getHeight() << endl;
 }
 
 template<class KeyType, class ItemType>

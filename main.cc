@@ -58,5 +58,7 @@ int main(){ // testing table with manual key-setting
 	tbl.add(1,destination("Santa Clarita", "CA", "Spring", "Train", ttd_1, ttd_1_size, 8) );
 //	throw TargetNotFoundException(); // Todo Doesn't compile.....
 
+	tbl.traverse(my_visit);
+	tbl.display();
 	return 0;
 }

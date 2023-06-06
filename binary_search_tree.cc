@@ -1,11 +1,12 @@
 
 #include "binary_search_tree.h"
 
-// TODO remove references to this->root_ptr ... that's a private member of binary_node_tree, so we can just call the binary_node_tree methods that operate on it instead of interacting with it directly in any way.
+	//TODO we're just calling all of binary_node_tree's methods... what differentiates this class!??
 
 //-----------------------------------------------------
 // Recursive methods, to be accessed by public wrappers
 //-----------------------------------------------------
+	// TODO none of these are used atm...
 template <class ItemType>
 binary_node<ItemType> * binary_search_tree<ItemType>::insertInorder(binary_node<ItemType> *sub_tree_ptr, binary_node<ItemType> *new_node_ptr) {
 	if(sub_tree_ptr == nullptr) return new_node_ptr;
@@ -92,9 +93,7 @@ binary_node<ItemType> * binary_search_tree<ItemType>::removeLeftmostNode(binary_
 //----------------------------
 template <class ItemType>
 binary_search_tree<ItemType>::binary_search_tree(){ // Should auto-magically call base class (binary_node_tree) default?
-//	this->root_ptr(nullptr);
-//	this->root_ptr = nullptr;
-} // uses an initializer to set root_ptr to nullptr
+}
 
 
 
@@ -116,69 +115,55 @@ binary_search_tree<ItemType>::~binary_search_tree(){ // todo Calls base class de
 //--------------
 //Public Methods
 //--------------
-//template <class ItemType>
-//bool binary_search_tree<ItemType>::add(const ItemType &new_entry) {
-//	binary_node<ItemType> * new_node_ptr = new binary_node<ItemType>(new_entry);
-////	this -> root_ptr = insertInorder(this -> root_ptr, new_node_ptr);
-//
-//	return true;
-//}
 
-
+template <class ItemType>
+bool binary_search_tree<ItemType>::add(const ItemType &new_entry) { //TODO is calling these methods with the same name necessary? Could the compiler just understand to use binary_node_tree's methods since its base class?
+	return binary_node_tree<ItemType>::add(new_entry);
+}
 
 template <class ItemType>
 bool binary_search_tree<ItemType>::remove(const ItemType& an_entry){
-	bool success = false;
-	this -> root_ptr = removeValue(this -> root_ptr, an_entry, success);
-	return success;
+	return binary_node_tree<ItemType>::remove(an_entry);
 }
 
 template <class ItemType>
 bool binary_search_tree<ItemType>::isEmpty() const {
-	return(this -> root_ptr == nullptr);
+	return binary_node_tree<ItemType>::isEmpty();
 }
 
 template <class ItemType>
 int binary_search_tree<ItemType>::getHeight() const {
-//	return recursive_getHeight()
-	return(this->recursive_getHeight(this -> root_ptr));
+	return binary_node_tree<ItemType>::getHeight();
 }
 
 template <class ItemType>
 int binary_search_tree<ItemType>::getNumberOfNodes() const {
-	return(this ->recursive_getNumberOfNodes(this -> root_ptr));
+	return binary_node_tree<ItemType>::getNumberOfNodes();
 }
 
 template <class ItemType>
 ItemType binary_search_tree<ItemType>::getRootData() const throw(PreconditionViolatedException) {
-	if(this -> isEmpty()) throw PreconditionViolatedException();
-	else return(this -> root_ptr -> getItem());
+	return binary_node_tree<ItemType>::getRootData();
 }
 
 template <class ItemType>
 void binary_search_tree<ItemType>::setRootData(const ItemType &new_data) const throw(PreconditionViolatedException) {
-	if(isEmpty()) add(new_data);
-	else this -> root_ptr -> setItem(new_data);
+	binary_node_tree<ItemType>::setRootData(new_data);
 }
 
 template <class ItemType>
 void binary_search_tree<ItemType>::clear() { // TODO check correctness
-	this ->recursive_destroyTree(this -> root_ptr);
+	binary_node_tree<ItemType>::clear();
 }
 
 template <class ItemType>
 ItemType binary_search_tree<ItemType>::getEntry(const ItemType &an_entry) const throw(NotFoundException) {
-	binary_node<ItemType> * node_ptr = findNode(this -> root_ptr, an_entry);
-
-	if(node_ptr == nullptr) throw NotFoundException("binary_search_tree::getEntry()"); //case: findNode unsuccessful
-	else return node_ptr -> getItem();
+	return binary_node_tree<ItemType>::getEntry(an_entry);
 }
 
 template <class ItemType>
 bool binary_search_tree<ItemType>::contains(const ItemType &an_entry) const {
-	bool successful = false;
-	this -> recursive_findNode(this -> root_ptr, an_entry, successful);
-	return successful;
+	return binary_node_tree<ItemType>::contains(an_entry);
 }
 
 
@@ -188,17 +173,17 @@ bool binary_search_tree<ItemType>::contains(const ItemType &an_entry) const {
 //------------------
 template <class ItemType>
 void binary_search_tree<ItemType>::preorderTraversal(void (*visit)(ItemType &)) const {
-	this ->recursive_preorder(visit, this -> root_ptr);
+	binary_node_tree<ItemType>::preorderTraversal(visit);
 }
 
 template <class ItemType>
 void binary_search_tree<ItemType>::inorderTraversal(void (*visit)(ItemType &)) const {
-	this ->recursive_inorder(visit, this -> root_ptr);
+	binary_node_tree<ItemType>::inorderTraversal(visit);
 }
 
 template <class ItemType>
 void binary_search_tree<ItemType>::postorderTraversal(void (*visit)(ItemType &)) const {
-	this ->recursive_postorder(visit, this -> root_ptr);
+	binary_node_tree<ItemType>::postorderTraversal(visit);
 }
 
 
