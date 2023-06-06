@@ -3,7 +3,7 @@
 
 // TODO remove references to this->root_ptr ... that's a private member of binary_node_tree, so we can just call the binary_node_tree methods that operate on it instead of interacting with it directly in any way.
 
-//------------------------------------------1-----------
+//-----------------------------------------------------
 // Recursive methods, to be accessed by public wrappers
 //-----------------------------------------------------
 template <class ItemType>
@@ -91,24 +91,24 @@ binary_node<ItemType> * binary_search_tree<ItemType>::removeLeftmostNode(binary_
 // Constructors and Destructor
 //----------------------------
 template <class ItemType>
-binary_search_tree<ItemType>::binary_search_tree(){
+binary_search_tree<ItemType>::binary_search_tree(){ // Should auto-magically call base class (binary_node_tree) default?
 //	this->root_ptr(nullptr);
 //	this->root_ptr = nullptr;
-} // uses an initializer to set root_ptr to nullptr // TODO check
+} // uses an initializer to set root_ptr to nullptr
+
+
 
 template <class ItemType>
-binary_search_tree<ItemType>::binary_search_tree(const ItemType &root_item){ // TODO check
-	this->root_ptr(new binary_node<ItemType>(root_item, nullptr, nullptr));
+binary_search_tree<ItemType>::binary_search_tree(const ItemType &root_item) : binary_node_tree<ItemType>(root_item){ // TODO check
 }
 
+
 template <class ItemType>
-binary_search_tree<ItemType>::binary_search_tree(const binary_search_tree<ItemType> &tree) {
-	this -> root_ptr = this ->copy_tree(tree.root_ptr);
+binary_search_tree<ItemType>::binary_search_tree(const binary_search_tree<ItemType> &tree) : binary_node_tree<ItemType>(tree){ // TODO check?
 }
 
 template<class ItemType>
-binary_search_tree<ItemType>::~binary_search_tree(){
-	this ->recursive_destroyTree(this -> root_ptr);
+binary_search_tree<ItemType>::~binary_search_tree(){ // todo Calls base class destructor? (so, recursive_destroyTree(root_ptr)?)
 }
 
 
@@ -116,13 +116,15 @@ binary_search_tree<ItemType>::~binary_search_tree(){
 //--------------
 //Public Methods
 //--------------
-template <class ItemType>
-bool binary_search_tree<ItemType>::add(const ItemType &new_entry) {
-	binary_node<ItemType> * new_node_ptr = new binary_node<ItemType>(new_entry);
-	this -> root_ptr = insertInorder(this -> root_ptr, new_node_ptr);
+//template <class ItemType>
+//bool binary_search_tree<ItemType>::add(const ItemType &new_entry) {
+//	binary_node<ItemType> * new_node_ptr = new binary_node<ItemType>(new_entry);
+////	this -> root_ptr = insertInorder(this -> root_ptr, new_node_ptr);
+//
+//	return true;
+//}
 
-	return true;
-}
+
 
 template <class ItemType>
 bool binary_search_tree<ItemType>::remove(const ItemType& an_entry){
