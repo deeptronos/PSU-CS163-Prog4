@@ -31,5 +31,5 @@ public:
 };
 
 
-#include "tree_entry.cc" // todo correct?
+//#include "tree_entry.cc" // todo correct?
 #endif //SOURCE_TREE_ENTRY_H
