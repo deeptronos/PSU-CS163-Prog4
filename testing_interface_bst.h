@@ -1,9 +1,11 @@
-#include "my_exceptions.h"
-#include "table.h"
-#include "destination.h"
 
 #ifndef SOURCE_TESTING_INTERFACE_BST_H
 #define SOURCE_TESTING_INTERFACE_BST_H
+
+#include "my_exceptions.h"
+#include "table.h"
+//#include "table.cc"
+#include "destination.h"
 
 
 using key_t = int;
