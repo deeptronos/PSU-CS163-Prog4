@@ -7,10 +7,6 @@
 using key_t = int;
 using item_t = destination;
 
-void my_visit(tree_entry<key_t, item_t>& i_){
-	std::cout << i_.getItem();
-}
-
 // Next time: figure out how to use the classes youve been working on :P
 
 
