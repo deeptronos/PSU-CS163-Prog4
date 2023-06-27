@@ -54,7 +54,7 @@ item_t createDestinationPrompt(int i_size){ // TODO organization?
 	cin.get(natural_beauty_index_str, i_size);
 	natural_beauty_index = strtol(natural_beauty_index_str, nullptr, 10);
 
-	return destination(location_name, nationstate_identifier, best_time_of_year, how_to_get_there, things_to_do, things_to_do_size, natural_beauty_index_str);
+	return destination(location_name, nationstate_identifier, best_time_of_year, how_to_get_there, things_to_do, things_to_do_size, natural_beauty_index);
 }
 
 
