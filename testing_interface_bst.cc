@@ -5,18 +5,13 @@
 // Helper method
 // -------------
 item_t createDestinationPrompt(int i_size){ // TODO organization?
-	int ttd_1_size = 3;
-	char * ttd_1[] = {"Surfing", "Whale-watching", "Sunday morning market"};
-	tbl.add(1,destination("Santa Clarita", "CA", "Spring", "Train", ttd_1, ttd_1_size, 8) );
-
-
 
 	char location_name[i_size];
 	char nationstate_identifier[i_size];
 	char best_time_of_year[i_size];
 	char how_to_get_there[i_size];
 //	char things_to_do[i_size/8][i_size]; // Let's not go crazy :P
-	char ** things_to_do;
+	char ** things_to_do; // Dynamic
 
 	char things_to_do_size_str[i_size];
 	int things_to_do_size;

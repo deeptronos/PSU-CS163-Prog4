@@ -15,8 +15,8 @@ public:
 	// Constructor/Destructor
 	// ----------------------
 
-	testing_interface_bst();
-	~testing_interface_bst();
+	testing_interface_bst() = default; // TODO
+	~testing_interface_bst() = default; // TODO
 
 
 	// -------------
