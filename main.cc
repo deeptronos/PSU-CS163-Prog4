@@ -1,9 +1,7 @@
 
 #include <cstring>
 
-#include "my_exceptions.h"
-#include "table.h"
-#include "destination.h"
+#include "testing_interface_bst.h"
 
 
 using key_t = int;
