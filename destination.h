@@ -21,7 +21,7 @@ private:
 public:
 	destination();
 //	destination(const char* name, const char* nationstate, const char* best_time, const char* getting_there, const vector<char *>* things, const int* natural_beauty);
-	destination(const char* name, const  char* nationstate,  const char* best_time,  const char* getting_there,  const char** things, int things_size, int natural_beauty);
+	destination(const char* name, const  char* nationstate,  const char* best_time,  const char* getting_there,  char** things, int things_size, int natural_beauty);
 	~destination();
 
 

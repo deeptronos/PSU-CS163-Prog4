@@ -9,7 +9,7 @@ destination::destination(){ // default
 
 //destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, // TODO this seems like a silly thing to do...
 ////                         const vector<char *> *things, const int *natural_beauty)
-destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, const char **things, int things_size, int natural_beauty) {
+destination::destination(const char *name, const char *nationstate, const char *best_time, const char *getting_there, char **things, int things_size, int natural_beauty) {
 	location_name = new char[strlen(name) + 1];
 	strcpy(location_name, name);
 
