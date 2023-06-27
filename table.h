@@ -37,7 +37,7 @@ public:
 	// Display all in sorted order by the Destination's name
 	void displayAll_byLocation() const;
 	// Display all in sorted order by the Destination's natural beauty index
-	void displayAll_byNaturalBeauty() const;
+	void displayAll_byNaturalBeauty() const; // TODO maintain a secondary tree for this..?
 
 
 	//Traverses the items in this table in sorted search-key order and calls
