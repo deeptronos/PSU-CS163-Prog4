@@ -2,11 +2,15 @@
 #ifndef SOURCE_TESTING_INTERFACE_BST_H
 #define SOURCE_TESTING_INTERFACE_BST_H
 
+#include <iostream>
 #include "my_exceptions.h"
 #include "table.h"
 //#include "table.cc"
 #include "destination.h"
 
+// TODO debugging Undefined Symbols compilation problems:
+// Undefined symbols reported only for methods of table.h that aren't present in parent class table_interface.h
+// table_interface.h is an abstract class?
 
 using key_t = int;
 using item_t = destination;
