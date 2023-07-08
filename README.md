@@ -6,7 +6,9 @@ This is the source for my submission as Program 4 of PSU's CS163 course in Sprin
 
 Portions of this code are based upon listings in chapters 3, 15 - 18 of "Data Abstraction & Problem Solving with C++: Walls and Mirrors" by Frank Carrano and Timothy Henry.
 
+Compile with `g++ *.cc -g -Wall -lm -pthread`.
 *** 
+
 
 ## Notes on Interfaces & Implementations:
 In many interfaces, I follow the data abstraction model adopted by Carrano and Henry - where possible, interfaces are designed generically so that
