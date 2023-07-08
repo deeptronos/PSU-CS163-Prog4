@@ -75,7 +75,7 @@ bool testing_interface_bst::prompt_user() {
 	cin.ignore(100, '\n');
 
 	if(input == '1'){
-		table_create();
+		return table_create();
 	}else if (input == '2'){
 		char search_key[i_size];
 		char new_item[i_size];
@@ -92,8 +92,10 @@ bool testing_interface_bst::prompt_user() {
 // Private non-wrapper method
 // --------------------------
 bool testing_interface_bst::table_create(){
+	cout << "table_create()" << endl;
 	if(table_ == nullptr){
-		table_ = new table<key_t, item_t>;
+//		table_ = new table<key_t, item_t>;
+		cout << "table_create()" << endl;
 		return true;
 	}else return false;
 }
@@ -118,14 +120,16 @@ bool testing_interface_bst::table_remove(const key_t& search_key) {
 
 bool testing_interface_bst::table_displayByLocationName() const {
 	if(table_){
-		table_->displayAll_byLocation();
+//		table_->displayAll_byLocation();
+		cout << "table_displayByLocationName()" << endl;
 		return true;
 	}else return false;
 }
 
 bool testing_interface_bst::table_displayByNaturalBeauty() const {
 	if(table_){
-		table_->displayAll_byNaturalBeauty();
+//		table_->displayAll_byNaturalBeauty();
+		cout << "table_displayByNaturalBeauty()" << endl;
 		return true;
 	}else return false;
 }
@@ -144,7 +148,8 @@ bool testing_interface_bst::table_getItem(const key_t &search_key) const {
 
 bool testing_interface_bst::table_getHeight() const {
 	if(table_){
-		cout << "Tree height: " << table_->getHeight() << endl;
+//		cout << "Tree height: " << table_->getHeight() << endl;
+		cout << "table_getHeight()" << endl;
 		return true;
 	}else return false;
 
