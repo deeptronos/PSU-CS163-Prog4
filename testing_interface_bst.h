@@ -21,8 +21,8 @@ public:
 	// Constructor/Destructor
 	// ----------------------
 
-	testing_interface_bst() = default; // TODO
-	~testing_interface_bst() = default; // TODO
+	testing_interface_bst();
+	~testing_interface_bst();
 
 
 	// -------------
@@ -54,6 +54,7 @@ private:
 	// Determine the height of the tree (used to assist in evaluating the performance of your software)
 	bool table_getHeight() const;
 
+	bool table_simple_display() const; // todo <CTEST>
 	// ----
 	// Data
 	// ----

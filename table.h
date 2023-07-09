@@ -33,7 +33,7 @@ public:
 	ItemType getItem(const KeyType& search_key) const throw(NotFoundException);
 	bool contains(const KeyType& search_key) const;
 
-	void display(); //TODO remove in favor of below two displayAll_<> methods
+	void display() const; //TODO remove in favor of below two displayAll_<> methods
 	// Display all in sorted order by the Destination's name
 	void displayAll_byLocation() const;
 	// Display all in sorted order by the Destination's natural beauty index

@@ -52,6 +52,17 @@ item_t createDestinationPrompt(int i_size){ // TODO organization?
 	return destination(location_name, nationstate_identifier, best_time_of_year, how_to_get_there, things_to_do, things_to_do_size, natural_beauty_index);
 }
 
+// ----------------------
+// Creator and Destructor
+// ----------------------
+testing_interface_bst::testing_interface_bst() {
+	table_ = nullptr;
+}
+
+testing_interface_bst::~testing_interface_bst() {
+	delete table_;
+}
+
 
 // -------------
 // Public method
@@ -69,23 +80,30 @@ bool testing_interface_bst::prompt_user() {
 			"5. Display the contents of the table sorted by location's natural beauty\n"
 			"6. Get an item from the table\n"
 			"7. Get the height of the table's tree\n"
+			"8. <CTEST> Simple display()\n"
 	        "(Q to quit)" << endl;
 	cout << "Input 1-7 or (Q)uit: ";
 	cin >> input;
 	cin.ignore(100, '\n');
 
-	if(input == '1'){
+	if(input == 'Q'){
+		return false;
+	}else if(input == '1'){
 		return table_create();
 	}else if (input == '2'){
-		char search_key[i_size];
-		char new_item[i_size];
+		char search_key_c[i_size];
 
-		cout << "<CTEST- search_key >Provide a name for the Location:" <<endl;
-		cin.get(search_key, i_size); // TODO good practice for input?
+		cout << "Provide an integer search key:" <<endl;
+		cin.get(search_key_c, i_size);
+		int search_key = atoi(search_key_c);
 
+		destination dest = createDestinationPrompt(i_size);
 
+		table_add(search_key, dest);
+	}else if (input == '8'){
+		table_simple_display();
 	}
-
+	return true;
 }
 
 // --------------------------
@@ -120,7 +138,7 @@ bool testing_interface_bst::table_remove(const key_t& search_key) {
 
 bool testing_interface_bst::table_displayByLocationName() const {
 	if(table_){
-//		table_->displayAll_byLocation();
+		table_->displayAll_byLocation();
 		cout << "table_displayByLocationName()" << endl;
 		return true;
 	}else return false;
@@ -128,7 +146,7 @@ bool testing_interface_bst::table_displayByLocationName() const {
 
 bool testing_interface_bst::table_displayByNaturalBeauty() const {
 	if(table_){
-//		table_->displayAll_byNaturalBeauty();
+		table_->displayAll_byNaturalBeauty();
 		cout << "table_displayByNaturalBeauty()" << endl;
 		return true;
 	}else return false;
@@ -148,9 +166,16 @@ bool testing_interface_bst::table_getItem(const key_t &search_key) const {
 
 bool testing_interface_bst::table_getHeight() const {
 	if(table_){
-//		cout << "Tree height: " << table_->getHeight() << endl;
+		cout << "Tree height: " << table_->getHeight() << endl;
 		cout << "table_getHeight()" << endl;
 		return true;
 	}else return false;
 
+}
+
+bool testing_interface_bst::table_simple_display() const {
+	if(table_){
+		table_->display();
+		return true;
+	}return false;
 }

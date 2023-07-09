@@ -83,7 +83,7 @@ bool table<KeyType, ItemType>::contains(const KeyType &search_key) const {
 }
 
 template<class KeyType, class ItemType>
-void table<KeyType, ItemType>::display() {
+void table<KeyType, ItemType>::display() const{
 	cout << "TABLE: " << endl << "  tree info: " << endl << "    # Data: " <<  item_tree.getNumberOfNodes() << ", Height: " << item_tree.getHeight() << endl;
 }
 
