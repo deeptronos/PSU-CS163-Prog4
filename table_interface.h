@@ -47,11 +47,21 @@ public:
 	* @return True if an item with the given search key exists in the table. */
 	virtual bool contains(const KeyType& search_key) const = 0;
 
+	// TODO document or remove or something
+	// BELOW 4 WERE ADDED TO MITIGATE UNDEFINED SYMBOLS COMPILATION ERROR
+	virtual int getHeight() const = 0;
+	virtual void display() const = 0;
+	virtual void displayAll_byLocation() const = 0;
+	virtual void displayAll_byNaturalBeauty()const = 0;
+
+
+
 	/**Traverses this table and calls a given client function once for each item.
 	* @post The given function’s action occurs once for each item in the table and possibly alters the item.
 	* @param visit A client function. */
 //	virtual void traverse(void visit(ItemType&)) const = 0;
 	virtual void traverse(void visit(tree_entry<KeyType, ItemType>&)) const = 0; // todo this seems a little silly
+
 };
 
 
