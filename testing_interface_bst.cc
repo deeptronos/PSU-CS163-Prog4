@@ -95,9 +95,8 @@ bool testing_interface_bst::prompt_user() {
 	cin >> input;
 	cin.ignore(100, '\n');
 
-	if(input == 'Q'){
-		return false;
-	}else if(input == '1'){
+
+	if(input == '1'){
 		return table_create();
 	}else if (input == '2'){
 		char search_key_c[i_size];
@@ -114,6 +113,8 @@ bool testing_interface_bst::prompt_user() {
 //		return true;
 	}else if(input == 'T'){
 		cout << testSubPrompt() << endl;
+	}else if(input == 'Q' || input == 'q') {
+		return false;
 	}
 	else{
 		cout << "Input not recognized" << endl;
@@ -127,7 +128,7 @@ bool testing_interface_bst::prompt_user() {
 bool testing_interface_bst::table_create(){
 	cout << "table_create()" << endl;
 	if(table_ == nullptr){
-//		table_ = new table<key_t, item_t>;
+		table_ = new table<key_t, item_t>;
 		cout << "table_create()" << endl;
 		return true;
 	}else return false;
