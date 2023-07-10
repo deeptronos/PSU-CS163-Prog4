@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <vector> // todo Can I do this?
-using namespace std;
+//using namespace std;
 
 class destination {
 private:

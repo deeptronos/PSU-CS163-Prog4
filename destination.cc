@@ -52,16 +52,15 @@ destination::~destination() {
 }
 
 
-using namespace std;
 int destination::display() const{
-//	cout << "name: " << location_name
-	cout << "DESTINATION - " << location_name <<", " << nationstate_identifier << endl
-	<< "    You should really visit in the " << best_time_of_year << endl << "    It's best to get there by "
-	<< how_to_get_there << endl << "    Beauty index: " << natural_beauty_index << "/10" << endl
-	<< "    You can do the following activities: " << endl;
+//	std::cout << "name: " << location_name
+	std::cout << "DESTINATION - " << location_name <<", " << nationstate_identifier << std::endl
+	<< "    You should really visit in the " << best_time_of_year << std::endl << "    It's best to get there by "
+	<< how_to_get_there << std::endl << "    Beauty index: " << natural_beauty_index << "/10" << std::endl
+	<< "    You can do the following activities: " << std::endl;
 
 	for(auto i = 0; i < things_to_do_size; ++i){
-		cout << "        - " << &(things_to_do[i]) << endl;
+		std::cout << "        - " << &(things_to_do[i]) << std::endl;
 	}
 	return 1;
 };
@@ -121,14 +120,14 @@ void destination::setNaturalBeautyIndex(const int new_) {
 
 
 
-ostream& operator<<(ostream& os, const destination& ds){ // TODO this is the same as display() but it takes the ostream as an argument :P
-	os << "DESTINATION - " << ds.location_name <<", " << ds.nationstate_identifier << endl
-	     << "    You should really visit in the " << ds.best_time_of_year << endl << "    It's best to get there by "
-	     << ds.how_to_get_there << endl << "    Beauty index: " << ds.natural_beauty_index << "/10" << endl
-	     << "    You can do the following activities: " << endl;
+std::ostream& operator<<(std::ostream& os, const destination& ds){ // TODO this is the same as display() but it takes the ostream as an argument :P
+	os << "DESTINATION - " << ds.location_name <<", " << ds.nationstate_identifier << std::endl
+	     << "    You should really visit in the " << ds.best_time_of_year << std::endl << "    It's best to get there by "
+	     << ds.how_to_get_there << std::endl << "    Beauty index: " << ds.natural_beauty_index << "/10" << std::endl
+	     << "    You can do the following activities: " << std::endl;
 
 	for(auto i = 0; i < ds.things_to_do_size  ; ++i){
-		os << "        - " << (ds.things_to_do[i]) << endl;
+		os << "        - " << (ds.things_to_do[i]) << std::endl;
 	}
 	return os;
 }
