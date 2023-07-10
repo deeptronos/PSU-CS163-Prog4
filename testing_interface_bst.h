@@ -8,9 +8,6 @@
 //#include "table.cc"
 #include "destination.h"
 
-// TODO debugging Undefined Symbols compilation problems:
-// Undefined symbols reported only for methods of table.h that aren't present in parent class table_interface.h
-// table_interface.h is an abstract class?
 
 using key_t = int;
 using item_t = destination;
