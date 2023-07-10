@@ -7,10 +7,13 @@
 using key_t = int;
 using item_t = destination;
 
-// Next time: figure out how to use the classes youve been working on :P
+// Next time: Fix the compilation error where table() is not defined -_-
 
 
 int main(){
+	table<key_t, item_t>* t = new table<key_t, item_t>;
+	t->display();
+
 	testing_interface_bst t_i_bst;
 	bool run = true;
 	do{
