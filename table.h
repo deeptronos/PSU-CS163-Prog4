@@ -11,7 +11,7 @@
 template <class KeyType, class ItemType>
 class table: public table_interface<KeyType, ItemType> {
 private:
-	binary_search_tree< tree_entry<KeyType, ItemType> > item_tree;
+	binary_search_tree< tree_entry<KeyType, ItemType> > item_tree; // TODO change to *?
 
 	void traverseHelper( tree_entry<KeyType, ItemType>& the_entry ); // TODO unnecessary?
 //	mutable void (*traverse_visit)(ItemType&); // Function pointer to store traverse()'s ``visit()`` argument for use in traverse_helper.
@@ -20,7 +20,7 @@ public:
 	table();
 //	table(int max_number_of_entries); // linear link-based DS, so irrelevant? No "maximum" storage capacity...
 	table(const table<KeyType, ItemType>& table_);
-	virtual ~table();
+	virtual ~table(); // todo ok? why virtual...
 
 	bool isEmpty() const;
 	int getNumberOfItems() const;
