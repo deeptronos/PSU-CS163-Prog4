@@ -5,7 +5,6 @@
 #include <iostream>
 #include "my_exceptions.h"
 #include "table.h"
-//#include "table.cc"
 #include "destination.h"
 
 
