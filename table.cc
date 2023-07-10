@@ -15,10 +15,12 @@
 // Constructors and Destructor
 // ---------------------------
 
-template <class KeyType, class ItemType>
+
 //table<KeyType, ItemType>::table() : item_tree(nullptr) {} // default constructor using initializer
+template <class KeyType, class ItemType>
 table<KeyType, ItemType>::table() {
-} // default constructor using initializer
+	item_tree = new binary_search_tree< tree_entry<KeyType, ItemType> >;
+}
 
 template <class KeyType, class ItemType>
 table<KeyType, ItemType>::table(const table<KeyType, ItemType> &table_) : item_tree(table_.item_tree.copy_tree()) {} // TODO check
@@ -28,6 +30,7 @@ table<KeyType, ItemType>::table(const table<KeyType, ItemType> &table_) : item_t
 
 template <class KeyType, class ItemType>
 table<KeyType, ItemType>::~table(){ // TODO ok?
+	delete item_tree;
 }
 
 
