@@ -20,20 +20,20 @@ item_t createDestinationPrompt(int i_size){ // TODO organization?
 
 	cout << "Create a Destination." << endl;
 	cout << "Name of the destination:" << endl;
-	cin.get(location_name, i_size);
+	cin.getline(location_name, i_size, '\n');
 
 	cout << "Name/abbreviation of the geographic region of the destination (State, Country, Province, etc.)" << endl;
-	cin.get(nationstate_identifier, i_size);
+	cin.getline(nationstate_identifier, i_size, '\n');
 
 	cout << "What's the best season to visit?" << endl;
-	cin.get(best_time_of_year, i_size);
+	cin.getline(best_time_of_year, i_size, '\n');
 
 	cout << "Best way to get there:" << endl;
-	cin.get(how_to_get_there, i_size);
+	cin.getline(how_to_get_there, i_size, '\n');
 
 	// Initialize two-dimensional dynamic char array things_to_do
 	cout << "Now, tell me about the activities you want to do there.\n Provide the number of activities:" << endl;
-	cin.get(things_to_do_size_str, i_size);
+	cin.getline(things_to_do_size_str, i_size, '\n');
 	things_to_do_size = strtol(things_to_do_size_str, nullptr, 10);
 
 	things_to_do = new char*[things_to_do_size];
@@ -41,17 +41,26 @@ item_t createDestinationPrompt(int i_size){ // TODO organization?
 	for(int i = 0; i < things_to_do_size; ++i){ // TODO should we use new char[] for each thing_to_do?
 		char thing_to_do[i_size];
 		cout << "Activity: " << endl;
-		cin.get(thing_to_do, i_size);
+		cin.getline(thing_to_do, i_size);
 		things_to_do[i] = thing_to_do;
 	}
 
 	cout << "Rate the natural beauty of this destination on a scale of 1-10:" << endl;
-	cin.get(natural_beauty_index_str, i_size);
+	cin.getline(natural_beauty_index_str, i_size, '\n');
 	natural_beauty_index = strtol(natural_beauty_index_str, nullptr, 10);
 
 	return destination(location_name, nationstate_identifier, best_time_of_year, how_to_get_there, things_to_do, things_to_do_size, natural_beauty_index);
 }
 
+int testSubPrompt(){
+	char inp[8];
+	char inp2[8];
+	cout << "CTEST testSubPrompt called. Input anything." << endl;
+	cin.getline(inp, 8);
+	cout << "CTEST Input anything again." << endl;
+	cin.getline(inp2, 8);
+	return stoi(inp);
+}
 // ----------------------
 // Creator and Destructor
 // ----------------------
@@ -68,7 +77,7 @@ testing_interface_bst::~testing_interface_bst() {
 // Public method
 // -------------
 bool testing_interface_bst::prompt_user() {
-	const int i_size = 256; // Allowed size of any char input
+	const int i_size = 8; // Allowed size of any char input
 
 	cout << endl; // Whitespace before prompt
 	char input;
@@ -94,14 +103,20 @@ bool testing_interface_bst::prompt_user() {
 		char search_key_c[i_size];
 
 		cout << "Provide an integer search key:" <<endl;
-		cin.get(search_key_c, i_size);
+		cin.getline(search_key_c, i_size, '\n');
 		int search_key = atoi(search_key_c);
 
 		destination dest = createDestinationPrompt(i_size);
 
 		table_add(search_key, dest);
 	}else if (input == '8'){
-		table_simple_display();
+		return table_simple_display();
+//		return true;
+	}else if(input == 'T'){
+		cout << testSubPrompt() << endl;
+	}
+	else{
+		cout << "Input not recognized" << endl;
 	}
 	return true;
 }
