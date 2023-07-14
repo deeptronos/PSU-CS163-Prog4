@@ -17,7 +17,7 @@
 		// traverse: calls underlying BST's traverse method. Takes a method visit() as argument to apply to each node in the tree. // TODO implement?
 
 
-// TODO NEX TIME: finish destination_name_tree implementation, create destination_beauty_tree, create table
+// TODO NEXT TIME: finish destination_name_tree implementation, create destination_beauty_tree, create table
 
 #ifndef SOURCE_TABLE_HH
 #define SOURCE_TABLE_HH
